@@ -105,3 +105,87 @@ input::placeholder{
     font-size:18px;
 
 }
+
+.code{
+
+    margin-top:30px;
+
+    margin-bottom:30px;
+
+    color:#00ff66;
+
+    font-size:30px;
+
+    letter-spacing:3px;
+
+    font-weight:bold;
+
+}
+
+input{
+
+    width:300px;
+
+    padding:12px;
+
+    background:#111;
+
+    color:white;
+
+    border:2px solid #00ff66;
+
+    font-size:18px;
+
+    text-align:center;
+
+    outline:none;
+
+}
+
+input::placeholder{
+
+    color:#666;
+
+}
+
+#message{
+
+    margin-top:20px;
+
+    color:#ff4444;
+
+    font-size:18px;
+
+}
+
+.help{
+
+    position:fixed;
+
+    right:5px;
+
+    bottom:10px;
+
+    writing-mode:vertical-rl;
+
+    text-orientation:mixed;
+
+    font-size:9px;
+
+    color:#101010;
+
+    text-decoration:none;
+
+    letter-spacing:2px;
+
+    transition:.3s;
+
+    user-select:none;
+
+}
+
+.help:hover{
+
+    color:#555;
+
+}
