@@ -57,3 +57,51 @@ button:hover{
     background: #00ff66;
     color: black;
 }
+
+.binary{
+    margin-top:20px;
+    margin-bottom:20px;
+
+    font-size:26px;
+    letter-spacing:3px;
+
+    color:#00ff66;
+
+    font-weight:bold;
+}
+
+input{
+
+    width:300px;
+
+    padding:12px;
+
+    font-size:18px;
+
+    text-align:center;
+
+    background:#111;
+
+    color:white;
+
+    border:2px solid #00ff66;
+
+    outline:none;
+
+}
+
+input::placeholder{
+
+    color:#777;
+
+}
+
+#message{
+
+    margin-top:20px;
+
+    color:#ff4444;
+
+    font-size:18px;
+
+}
