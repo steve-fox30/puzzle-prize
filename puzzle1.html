@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puzzle 1</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>PUZZLE 1,ketik password dengan KAPITAL</h1>
+
+<hr>
+
+<p>Komputer tidak mengenal huruf.</p>
+
+<p>Ia menggunakan bahasa yang disebut...</p>
+
+<h2>ASCII</h2>
+
+<div class="binary">
+01001001<br>
+01001011<br>
+01000001<br>
+01001110
+</div>
+
+<br>
+
+<input type="text" id="answer" placeholder="Masukkan jawaban">
+
+<br><br>
+
+<button onclick="checkAnswer()">SUBMIT</button>
+
+<p id="message"></p>
+
+</div>
+
+<script>
+
+function checkAnswer(){
+
+let answer = document.getElementById("answer").value.toUpperCase();
+
+if(answer === "IKAN"){
+
+window.location.href="puzzle2.html";
+
+}else{
+
+document.getElementById("message").innerHTML =
+"❌ Salah!<br><br>Hint : Komputer menghitung dengan cara yang berbeda dari manusia.";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
