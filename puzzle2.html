@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FILE 02</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>FILE 02</h1>
+
+    <hr>
+
+    <p>
+        Jika kau teliti,<br>
+        jalanmu akan lebih mudah.
+    </p>
+
+    <div class="code">
+        UlVCQUg=
+    </div>
+
+    <br>
+
+    <input type="text" id="answer" placeholder="Masukkan jawaban">
+
+    <br><br>
+
+    <button onclick="checkAnswer()">SUBMIT</button>
+
+    <p id="message"></p>
+
+</div>
+
+<a href="https://www.base64decode.org/" target="_blank" class="help">
+ Help?
+</a>
+
+<script>
+
+function checkAnswer(){
+
+    let answer = document.getElementById("answer").value.toUpperCase();
+
+    if(answer=="RUBAH"){
+
+        window.location.href="puzzle3.html";
+
+    }
+
+    else{
+
+        document.getElementById("message").innerHTML =
+        "Access Denied.";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
