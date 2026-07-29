@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FINAL FILE</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>FINAL FILE</h1>
+
+    <hr>
+
+    <p>
+        Tidak ada satu pun<br>
+        jawaban yang terbuang.
+    </p>
+
+    <br>
+
+    <p>
+        Semua jawabanmu<br>
+        masih berguna.
+    </p>
+
+    <br><br>
+
+    <input
+        type="text"
+        id="answer"
+        placeholder="Masukkan jawaban">
+
+    <br><br>
+
+    <button onclick="checkAnswer()">
+        SUBMIT
+    </button>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+
+function checkAnswer(){
+
+    let answer =
+    document.getElementById("answer")
+    .value
+    .toUpperCase()
+    .replace(/\s+/g,'');
+
+    if(answer=="IKANRUBAHJAWABANNYA"){
+
+        window.location.href="prize.html";
+
+    }else{
+
+        document.getElementById("message").innerHTML =
+        "Masih ada yang belum kamu sadari.";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
