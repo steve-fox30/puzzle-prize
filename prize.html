@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ACCESS GRANTED</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>ACCESS GRANTED</h1>
+
+<hr>
+
+<br>
+
+<p id="status">
+
+Verifying...
+
+</p>
+
+<br>
+
+<div class="code" id="loading">
+
+█░░░░░░░░░ 10%
+
+</div>
+
+<div id="reward" style="display:none;">
+
+<br>
+
+<p>
+
+Selamat.
+
+</p>
+
+<br>
+
+<p>
+
+Kamu berhasil menyelesaikan
+seluruh puzzle.
+
+</p>
+
+<br>
+
+<p>
+
+Tidak banyak orang yang
+mampu sampai di titik ini.
+
+</p>
+
+<br>
+
+<h2>PASSWORD</h2>
+
+<div class="code">
+
+PASSWORD:FOX311
+
+</div>
+
+<br>
+
+<p>
+
+Pake password tersebut
+jeng muka folder hadiah.
+bereken ss an halaman iye ka aing
+mun hayang folder na  
+
+</p>
+
+<br><br>
+
+<p style="font-size:14px;color:#555;">
+
+nuhun ges main bos.
+
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+let bar=document.getElementById("loading");
+let status=document.getElementById("status");
+let reward=document.getElementById("reward");
+
+setTimeout(()=>{
+bar.innerHTML="████░░░░░░ 40%";
+},800);
+
+setTimeout(()=>{
+bar.innerHTML="███████░░░ 75%";
+},1700);
+
+setTimeout(()=>{
+bar.innerHTML="██████████ 100%";
+status.innerHTML="ACCESS GRANTED";
+},2600);
+
+setTimeout(()=>{
+bar.style.display="none";
+reward.style.display="block";
+},3200);
+
+</script>
+
+</body>
+
+</html>
