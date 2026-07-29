@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FILE 03</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>FILE 03</h1>
+
+    <hr>
+
+    <p>
+        Jangan gunakan cara<br>
+        yang sama seperti sebelumnya.
+    </p>
+
+    <br>
+
+    <p>
+        Jawabannya sudah ada<br>
+        di depanmu.
+    </p>
+
+    <br><br>
+
+    <input
+        type="text"
+        id="answer"
+        placeholder="Masukkan jawaban">
+
+    <br><br>
+
+    <button onclick="checkAnswer()">
+        SUBMIT
+    </button>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+
+function checkAnswer(){
+
+    let answer = document
+    .getElementById("answer")
+    .value
+    .toUpperCase()
+    .trim();
+
+    if(answer === "JAWABANNYA"){
+
+        window.location.href="prize.html";
+
+    }else{
+
+        document.getElementById("message").innerHTML =
+        "Masih salah... baca kembali dengan teliti.";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
