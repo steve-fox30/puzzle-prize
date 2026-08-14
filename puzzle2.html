@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FILE 02</title>
+
+    <title>Puzzle 2</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,51 +13,69 @@
 
 <div class="container">
 
-    <h1>FILE 02</h1>
-
-    <hr>
+    <h1>PUZZLE 02</h1>
 
     <p>
-        Jika kau teliti,<br>
-        jalanmu akan lebih mudah.
+        Untuk mencari sesuatu, jangan terburu-buru.
+        <br>
+        lihat setiap bagian dengan teliti.
+        <br>
+        Variasi kecil terkadang memiliki arti.
+        <br>
+        Cobalah membaca lebih dari sekali.
+        <br>
+        Question everything.
+        <br>
+        Ulangi jika belum menemukan.
+        <br>
+        garis kecil pun bisa menjadi petunjuk.
+        <br>
+        = jangan abaikan tanda yang terlihat aneh.
     </p>
-
-    <div class="code">
-        UlVCQUg=
-    </div>
 
     <br>
 
-    <input type="text" id="answer" placeholder="Masukkan jawaban">
+    <p>
+        Masih belum menemukan jawabannya?
+        <br><br>
+        <b>CODE 64</b>
+    </p>
+
+    <br>
+
+    <input
+        type="text"
+        id="jawaban"
+        placeholder="Masukkan jawaban">
 
     <br><br>
 
-    <button onclick="checkAnswer()">SUBMIT</button>
+    <button onclick="cekJawaban()">
+        CEK
+    </button>
 
-    <p id="message"></p>
+    <p id="hasil"></p>
 
 </div>
 
-<a href="https://www.base64decode.org/" target="_blank" class="help">
- Help?
-</a>
 
 <script>
 
-function checkAnswer(){
+function cekJawaban() {
 
-    let answer = document.getElementById("answer").value.toUpperCase();
+    let jawaban = document
+        .getElementById("jawaban")
+        .value
+        .trim();
 
-    if(answer=="RUBAH"){
+    if (jawaban === "RUBAH") {
 
-        window.location.href="puzzle3.html";
+        window.location.href = "puzzle3.html";
 
-    }
+    } else {
 
-    else{
-
-        document.getElementById("message").innerHTML =
-        "Access Denied.";
+        document.getElementById("hasil").innerHTML =
+            "Jawaban masih salah.";
 
     }
 
