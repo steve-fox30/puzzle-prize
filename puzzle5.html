@@ -1,223 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle UNI</title>
 
-    <title>V FOX</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            padding: 30px 15px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 600px;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 28px;
-            letter-spacing: 6px;
-            margin-bottom: 45px;
-        }
-
-        .hex {
-            font-family: monospace;
-            font-size: 15px;
-            line-height: 1.8;
-
-            text-align: center;
-            word-break: break-word;
-
-            margin-bottom: 45px;
-        }
-
-        .story {
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        /*
-        Kata "behind" sengaja dibuat
-        terlihat seperti teks biasa.
-        */
-
-        .behind {
-            cursor: pointer;
-        }
-
-        .secret {
-            display: none;
-
-            margin-top: 35px;
-            text-align: center;
-        }
-
-        .secret.show {
-            display: block;
-        }
-
-        .code {
-            font-family: monospace;
-            font-size: 20px;
-            letter-spacing: 3px;
-            margin-bottom: 25px;
-
-        }
-
-        input:focus {
-            border-color: #fff;
-        }
-
-        button {
-            display: block;
-
-            margin: 12px auto 0;
-
-            padding: 11px 25px;
-
-            background: #000;
-            color: #fff;
-
-            border: 1px solid #555;
-
-            cursor: pointer;
-
-            font-size: 14px;
-        }
-
-        button:hover {
-            border-color: #fff;
-        }
-
-        #message {
-            min-height: 20px;
-            margin-top: 15px;
-            font-size: 14px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>V FOX</h1>
+    <h1>PUZZLE</h1>
 
+    <p>
+        Pecahkan pesan yang tersembunyi di dalam angka berikut:
+    </p>
 
-        CARI TAU APA MAKSUD
-             DARI SOAL TERSEBUT
+    <h2>
+        54 48 45 20 41 4E 53 57 45 52
+        20 4C 49 45 53 20 42 45 48 49 4E 44
+    </h2>
 
-        <div class="hex">
+    <p>
+        "Not everything you are looking for is ahead
+        <br>
+       sometimes, the answer is actually waiting behind."
+        <a href="behind.html">BEHIND</a>.
+    </p>
 
-            54 48 45 20 41 4E 53 57 45 52 20 49 53
-            20 42 45 48 49 4E 44
+    <br>
 
-        </div>
+    <input
+        type="text"
+        id="jawaban"
+        placeholder="Masukkan jawaban">
 
+    <br><br>
 
-        <!-- CERITA / SOAL -->
+    <button onclick="cekJawaban()">LANJUT</button>
 
-        <div class="story">
+    <p id="hasil"></p>
 
-            <p>
-                The room had been empty for years.
-                Dust covered the floor, and the old clock
-                had stopped at midnight.
-            </p>
+</div>
 
-            <p>
-                Nothing seemed unusual at first.
-                A faint sound came from
-                <span class="behind" onclick="showSecret()">behind</span>
-                the wall, but when you looked,
-                there was nothing there.
-            </p>
+<script>
 
-            <p>
-                Perhaps it was only the wind.
-            </p>
+function cekJawaban() {
 
-        </div>
+    let jawaban = document.getElementById("jawaban").value.trim();
 
+    if (jawaban === "13010") {
 
-        <!-- KAPANGGIH -->
+        window.location.href = "puzzle-next.html";
 
-        <div id="secret" class="secret">
+    } else {
 
-            <div class="code">
-                3 3 0 1
-            </div>
+        document.getElementById("hasil").innerHTML =
+        "Jawaban masih salah.";
 
-            <input
-                type="text"
-                id="answer"
-                placeholder="Enter answer"
-                autocomplete="off"
-            >
+    }
 
-            <button onclick="checkAnswer()">
-                SUBMIT
-            </button>
+}
 
-            <p id="message"></p>
-
-        </div>
-
-    </div>
-
-
-    <script>
-
-        function showSecret() {
-
-            document
-                .getElementById("secret")
-                .classList.add("show");
-
-        }
-
-
-        function checkAnswer() {
-
-            const answer = document
-                .getElementById("answer")
-                .value
-                .trim()
-                .toUpperCase();
-
-
-            if (answer === "7F120419") {
-
-                window.location.href = "puzzle6.html";
-
-            } else {
-
-                document
-                    .getElementById("message")
-                    .textContent = "Wrong answer.";
-
-            }
-
-        }
-
-    </script>
+</script>
 
 </body>
 </html>
