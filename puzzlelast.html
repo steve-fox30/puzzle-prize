@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>V FOX</title>
+
+    <style>
+        /* HANYA MENGATUR BAGIAN PUZZLE */
+        .final-puzzle {
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .final-puzzle h1 {
+            margin-bottom: 35px;
+        }
+
+        .puzzle-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 350px;
+            margin: auto;
+        }
+
+        .puzzle-button {
+            width: 100%;
+            padding: 15px;
+
+            background: transparent;
+            color: inherit;
+
+            border: 1px solid currentColor;
+
+            font-size: 16px;
+            letter-spacing: 2px;
+
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .puzzle-button:hover:not(:disabled) {
+            opacity: 0.7;
+        }
+
+        .puzzle-button:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .completed {
+            opacity: 0.55;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="final-puzzle">
+
+        <h1>V FOX</h1>
+
+        <div class="puzzle-buttons">
+
+            <!-- BEGIN -->
+            <button
+                id="beginButton"
+                class="puzzle-button"
+                onclick="goToPuzzle('begin')">
+                BEGIN
+            </button>
+
+            <!-- SEARCH -->
+            <button
+                id="searchButton"
+                class="puzzle-button"
+                onclick="goToPuzzle('search')"
+                disabled>
+                ?????
+            </button>
+
+            <!-- DISCOVER -->
+            <button
+                id="discoverButton"
+                class="puzzle-button"
+                onclick="goToPuzzle('discover')"
+                disabled>
+                ?????
+            </button>
+
+            <!-- END -->
+            <button
+                id="endButton"
+                class="puzzle-button"
+                onclick="goToPuzzle('end')"
+                disabled>
+                ?????
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /*
+        ========================================
+        SISTEM PROGRESS
+        ========================================
+        */
+
+        const beginSolved =
+            localStorage.getItem("beginSolved") === "true";
+
+        const searchSolved =
+            localStorage.getItem("searchSolved") === "true";
+
+        const discoverSolved =
+            localStorage.getItem("discoverSolved") === "true";
+
+        const endSolved =
+            localStorage.getItem("endSolved") === "true";
+
+
+        /*
+        ========================================
+        UPDATE TOMBOL
+        ========================================
+        */
+
+        const beginButton =
+            document.getElementById("beginButton");
+
+        const searchButton =
+            document.getElementById("searchButton");
+
+        const discoverButton =
+            document.getElementById("discoverButton");
+
+        const endButton =
+            document.getElementById("endButton");
+
+
+        // BEGIN
+
+        if (beginSolved) {
+
+            beginButton.innerText = "✓ BEGIN";
+            beginButton.classList.add("completed");
+
+        }
+
+
+        // SEARCH
+
+        if (beginSolved) {
+
+            searchButton.disabled = false;
+            searchButton.innerText = "SEARCH";
+
+        }
+
+
+        if (searchSolved) {
+
+            searchButton.innerText = "✓ SEARCH";
+            searchButton.classList.add("completed");
+
+        }
+
+
+        // DISCOVER
+
+        if (searchSolved) {
+
+            discoverButton.disabled = false;
+            discoverButton.innerText = "DISCOVER";
+
+        }
+
+
+        if (discoverSolved) {
+
+            discoverButton.innerText = "✓ DISCOVER";
+            discoverButton.classList.add("completed");
+
+        }
+
+
+        // END
+
+        if (discoverSolved) {
+
+            endButton.disabled = false;
+            endButton.innerText = "END";
+
+        }
+
+
+        if (endSolved) {
+
+            endButton.innerText = "✓ END";
+            endButton.classList.add("completed");
+
+        }
+
+
+        /*
+        ========================================
+        PINDAH KE PUZZLE
+        ========================================
+        */
+
+        function goToPuzzle(puzzle) {
+
+            if (puzzle === "begin") {
+
+                window.location.href = "begin.html";
+
+            }
+
+            else if (puzzle === "search") {
+
+                if (beginSolved) {
+                    window.location.href = "search.html";
+                }
+
+            }
+
+            else if (puzzle === "discover") {
+
+                if (searchSolved) {
+                    window.location.href = "discover.html";
+                }
+
+            }
+
+            else if (puzzle === "end") {
+
+                if (discoverSolved) {
+                    window.location.href = "end.html";
+                }
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
