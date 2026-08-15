@@ -7,55 +7,127 @@
     <title>V FOX</title>
 
     <style>
-        /* HANYA MENGATUR BAGIAN PUZZLE */
-        .final-puzzle {
-            text-align: center;
-            padding: 30px 15px;
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        body {
+            background: #000;
+            color: #39ff14;
+            margin: 0;
+            min-height: 100vh;
+
+            font-family: Arial, sans-serif;
         }
 
-        .final-puzzle h1 {
-            margin-bottom: 35px;
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .final-puzzle {
+            text-align: center;
+            padding-top: 50px;
         }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        .final-puzzle h1 {
+            margin-bottom: 40px;
+
+            font-family: Georgia, serif;
+            font-size: 32px;
+
+            color: #39ff14;
+        }
+
+
+        /* =========================
+           BUTTON CONTAINER
+        ========================= */
 
         .puzzle-buttons {
             display: flex;
             flex-direction: column;
+
             gap: 15px;
-            width: 100%;
-            max-width: 350px;
+
+            width: 350px;
+            max-width: 85%;
+
             margin: auto;
         }
 
+
+        /* =========================
+           BUTTON
+        ========================= */
+
         .puzzle-button {
             width: 100%;
-            padding: 15px;
 
-            background: transparent;
-            color: inherit;
+            padding: 15px 10px;
 
-            border: 1px solid currentColor;
+            border: 1px solid #39ff14;
+
+            background: #071f0b;
+
+            color: #39ff14;
 
             font-size: 16px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
 
             cursor: pointer;
+
             transition: 0.2s;
         }
 
+
+        /* =========================
+           BUTTON AKTIF
+        ========================= */
+
         .puzzle-button:hover:not(:disabled) {
+            background: #39ff14;
+            color: #000;
+        }
+
+
+        /* =========================
+           BUTTON TERKUNCI
+        ========================= */
+
+        .puzzle-button:disabled {
+            background: #020802;
+
+            color: #245c24;
+
+            border-color: #245c24;
+
+            cursor: not-allowed;
+
+            opacity: 0.8;
+        }
+
+
+        /* =========================
+           PUZZLE SELESAI
+        ========================= */
+
+        .completed {
+            background: #0b3d12;
+
+            color: #39ff14;
+
             opacity: 0.7;
         }
 
-        .puzzle-button:disabled {
-            opacity: 0.35;
-            cursor: not-allowed;
-        }
-
-        .completed {
-            opacity: 0.55;
-        }
     </style>
 </head>
+
 
 <body>
 
@@ -63,55 +135,80 @@
 
         <h1>V FOX</h1>
 
+
         <div class="puzzle-buttons">
 
-            <!-- BEGIN -->
+
+            <!-- =====================
+                 BEGIN
+            ====================== -->
+
             <button
                 id="beginButton"
                 class="puzzle-button"
                 onclick="goToPuzzle('begin')">
+
                 BEGIN
+
             </button>
 
-            <!-- SEARCH -->
+
+            <!-- =====================
+                 SEARCH
+            ====================== -->
+
             <button
                 id="searchButton"
                 class="puzzle-button"
                 onclick="goToPuzzle('search')"
                 disabled>
+
                 ?????
+
             </button>
 
-            <!-- DISCOVER -->
+
+            <!-- =====================
+                 DISCOVER
+            ====================== -->
+
             <button
                 id="discoverButton"
                 class="puzzle-button"
                 onclick="goToPuzzle('discover')"
                 disabled>
+
                 ?????
+
             </button>
 
-            <!-- END -->
+
+            <!-- =====================
+                 END
+            ====================== -->
+
             <button
                 id="endButton"
                 class="puzzle-button"
                 onclick="goToPuzzle('end')"
                 disabled>
+
                 ?????
+
             </button>
+
 
         </div>
 
     </div>
 
 
+
     <script>
 
-        /*
-        ========================================
-        SISTEM PROGRESS
-        ========================================
-        */
+        /* =================================
+           CEK PROGRESS
+        ================================= */
 
         const beginSolved =
             localStorage.getItem("beginSolved") === "true";
@@ -126,11 +223,9 @@
             localStorage.getItem("endSolved") === "true";
 
 
-        /*
-        ========================================
-        UPDATE TOMBOL
-        ========================================
-        */
+        /* =================================
+           AMBIL BUTTON
+        ================================= */
 
         const beginButton =
             document.getElementById("beginButton");
@@ -145,21 +240,27 @@
             document.getElementById("endButton");
 
 
-        // BEGIN
+        /* =================================
+           BEGIN
+        ================================= */
 
         if (beginSolved) {
 
             beginButton.innerText = "✓ BEGIN";
+
             beginButton.classList.add("completed");
 
         }
 
 
-        // SEARCH
+        /* =================================
+           SEARCH
+        ================================= */
 
         if (beginSolved) {
 
             searchButton.disabled = false;
+
             searchButton.innerText = "SEARCH";
 
         }
@@ -168,16 +269,20 @@
         if (searchSolved) {
 
             searchButton.innerText = "✓ SEARCH";
+
             searchButton.classList.add("completed");
 
         }
 
 
-        // DISCOVER
+        /* =================================
+           DISCOVER
+        ================================= */
 
         if (searchSolved) {
 
             discoverButton.disabled = false;
+
             discoverButton.innerText = "DISCOVER";
 
         }
@@ -186,16 +291,20 @@
         if (discoverSolved) {
 
             discoverButton.innerText = "✓ DISCOVER";
+
             discoverButton.classList.add("completed");
 
         }
 
 
-        // END
+        /* =================================
+           END
+        ================================= */
 
         if (discoverSolved) {
 
             endButton.disabled = false;
+
             endButton.innerText = "END";
 
         }
@@ -204,18 +313,18 @@
         if (endSolved) {
 
             endButton.innerText = "✓ END";
+
             endButton.classList.add("completed");
 
         }
 
 
-        /*
-        ========================================
-        PINDAH KE PUZZLE
-        ========================================
-        */
+        /* =================================
+           PINDAH HALAMAN
+        ================================= */
 
         function goToPuzzle(puzzle) {
+
 
             if (puzzle === "begin") {
 
@@ -223,26 +332,35 @@
 
             }
 
+
             else if (puzzle === "search") {
 
                 if (beginSolved) {
+
                     window.location.href = "search.html";
+
                 }
 
             }
+
 
             else if (puzzle === "discover") {
 
                 if (searchSolved) {
+
                     window.location.href = "discover.html";
+
                 }
 
             }
 
+
             else if (puzzle === "end") {
 
                 if (discoverSolved) {
+
                     window.location.href = "end.html";
+
                 }
 
             }
