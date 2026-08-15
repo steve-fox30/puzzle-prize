@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BEGIN - V FOX</title>
+
+    <style>
+
+        body {
+            background: #000;
+            color: #39ff14;
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: auto;
+            padding-top: 80px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: Georgia, serif;
+            font-size: 32px;
+            margin-bottom: 60px;
+        }
+
+        /* SEWIX + BANTUAN */
+
+        .puzzle-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 35px;
+
+            margin-bottom: 45px;
+        }
+
+        .cipher {
+            font-size: 32px;
+            letter-spacing: 8px;
+        }
+
+        /* TOMBOL */
+
+        button {
+            padding: 13px 18px;
+
+            background: #071f0b;
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            font-size: 14px;
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #39ff14;
+            color: #000;
+        }
+
+        /* KOLOM SANDI */
+
+        .answer-box {
+            width: 100%;
+            max-width: 350px;
+
+            padding: 14px;
+
+            box-sizing: border-box;
+
+            background: #000;
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            text-align: center;
+
+            font-size: 16px;
+
+            outline: none;
+
+            margin-bottom: 15px;
+        }
+
+        .answer-box:focus {
+            box-shadow: 0 0 8px #39ff14;
+        }
+
+        .message {
+            min-height: 25px;
+            margin-top: 20px;
+        }
+
+        /* HP */
+
+        @media (max-width: 600px) {
+
+            .puzzle-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>BEGIN</h1>
+
+
+        <!-- CIPHERTEXT + BANTUAN -->
+
+        <div class="puzzle-row">
+
+            <div class="cipher">
+                SEWIX
+            </div>
+
+            <button onclick="goToHelp()">
+                BUTUH BANTUAN?
+            </button>
+
+        </div>
+
+
+        <!-- KOLOM SANDI -->
+
+        <input
+            id="answer"
+            class="answer-box"
+            type="text"
+            placeholder="Masukkan sandi"
+            autocomplete="off"
+        >
+
+
+        <br>
+
+
+        <button onclick="checkAnswer()">
+            LANJUT
+        </button>
+
+
+        <div
+            id="message"
+            class="message">
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           TOMBOL BANTUAN
+        ========================= */
+
+        function goToHelp() {
+
+            window.location.href = "bantuan.html";
+
+        }
+
+
+        /* =========================
+           CEK SANDI
+        ========================= */
+
+        function checkAnswer() {
+
+            const answer =
+                document
+                .getElementById("answer")
+                .value
+                .trim()
+                .toUpperCase();
+
+
+            const message =
+                document
+                .getElementById("message");
+
+
+            if (answer === "BEBEK") {
+
+                /* BEGIN SELESAI */
+
+                localStorage.setItem(
+                    "beginSolved",
+                    "true"
+                );
+
+
+                /* MENUJU HALAMAN EJEKAN */
+
+                window.location.href =
+                    "woops.png";
+
+            }
+
+            else {
+
+                message.innerText =
+                    "Sandi salah.";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
