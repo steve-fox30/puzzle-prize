@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BANTUAN - V FOX</title>
+
+    <style>
+
+        body {
+            background: #000;
+            color: #39ff14;
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: auto;
+            padding-top: 60px;
+            padding-bottom: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: Georgia, serif;
+            font-size: 32px;
+            margin-bottom: 45px;
+        }
+
+        /* =========================
+           POLYBIUS
+        ========================= */
+
+        .polybius-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+        .polybius-title h2 {
+            margin: 0;
+        }
+
+        .polybius-symbol {
+            font-size: 30px;
+            line-height: 1;
+        }
+
+        .cipher {
+            font-size: 27px;
+            letter-spacing: 5px;
+            margin: 30px 0;
+        }
+
+        .clue {
+            line-height: 1.7;
+            margin: 25px auto;
+
+            max-width: 550px;
+        }
+
+        /* =========================
+           INPUT
+        ========================= */
+
+        input {
+            box-sizing: border-box;
+
+            width: 100%;
+            max-width: 350px;
+
+            padding: 14px;
+
+            background: #000;
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            text-align: center;
+
+            font-size: 16px;
+
+            outline: none;
+
+            margin-top: 20px;
+        }
+
+        input:focus {
+            box-shadow: 0 0 8px #39ff14;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        button {
+            padding: 13px 25px;
+
+            margin-top: 15px;
+
+            background: #071f0b;
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            font-size: 15px;
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #39ff14;
+            color: #000;
+        }
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        .message {
+            min-height: 25px;
+            margin-top: 20px;
+        }
+
+        /* =========================
+           RAVEN
+        ========================= */
+
+        #raven {
+            margin-top: 55px;
+
+            padding-top: 35px;
+
+            border-top: 1px solid #174d1c;
+        }
+
+        #raven h2 {
+            margin-bottom: 25px;
+        }
+
+        .key {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           NEXT LOCKED BUTTON
+        ========================= */
+
+        .locked {
+            margin-top: 40px;
+
+            opacity: 0.35;
+
+            border-color: #245c24;
+
+            color: #245c24;
+
+            background: #020802;
+
+            cursor: not-allowed;
+        }
+
+        .locked:hover {
+            background: #020802;
+            color: #245c24;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>BANTUAN</h1>
+
+
+    <!-- =================================
+         POLYBIUS
+    ================================== -->
+
+    <div id="polybius">
+
+        <div class="polybius-title">
+
+            <h2>POLYBIUS</h2>
+
+            <span class="polybius-symbol">▢</span>
+
+        </div>
+
+
+        <div class="cipher">
+            31 15 32 24 34 13 24
+        </div>
+
+
+        <div class="clue">
+
+            Tidak semua peta digambar dengan jalan.
+            Kadang ia hanya terdiri dari 5 × 5.
+
+        </div>
+
+
+        <input
+            id="polybiusAnswer"
+            type="text"
+            placeholder="Masukkan sandi"
+            autocomplete="off"
+        >
+
+
+        <br>
+
+
+        <button onclick="checkPolybius()">
+            CEK
+        </button>
+
+
+        <div
+            id="polybiusMessage"
+            class="message">
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         RAVEN
+    ================================== -->
+
+    <div
+        id="raven"
+        class="hidden">
+
+        <h2>RAVEN</h2>
+
+
+        <div class="key">
+            Key: <strong>RAVEN</strong>
+        </div>
+
+
+        <button onclick="openVigenere()">
+            VIGENÈRE
+        </button>
+
+    </div>
+
+
+    <!-- =================================
+         NEXT LOCKED PUZZLE
+    ================================== -->
+
+    <button
+        id="nextButton"
+        class="locked"
+        disabled>
+
+        ?????
+
+    </button>
+
+</div>
+
+
+
+<script>
+
+    /* =================================
+       CEK POLYBIUS
+    ================================= */
+
+    function checkPolybius() {
+
+        const answer =
+            document
+            .getElementById("polybiusAnswer")
+            .value
+            .trim()
+            .toUpperCase();
+
+
+        const message =
+            document
+            .getElementById("polybiusMessage");
+
+
+        if (answer === "KELINCI") {
+
+            message.innerText = "";
+
+
+            /* BUKA RAVEN */
+
+            document
+            .getElementById("raven")
+            .classList
+            .remove("hidden");
+
+
+            /* SIMPAN PROGRESS */
+
+            localStorage.setItem(
+                "polybiusSolved",
+                "true"
+            );
+
+        }
+
+        else {
+
+            message.innerText =
+                "Jawaban belum tepat.";
+
+        }
+
+    }
+
+
+    /* =================================
+       BUKA WEB VIGENÈRE
+    ================================= */
+
+    function openVigenere() {
+
+        window.open(
+            "https://www.dcode.fr/vigenere-cipher",
+            "_blank"
+        );
+
+    }
+
+</script>
+
+</body>
+</html>
