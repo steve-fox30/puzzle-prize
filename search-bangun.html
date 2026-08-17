@@ -34,13 +34,13 @@
         }
 
         h1 {
-            margin-bottom: 10px;
             font-size: 32px;
+            margin-bottom: 10px;
         }
 
         .subtitle {
-            margin-bottom: 40px;
             font-size: 18px;
+            margin-bottom: 40px;
         }
 
         /* AREA PUZZLE */
@@ -56,7 +56,7 @@
             align-items: center;
         }
 
-        /* POSISI */
+        /* POSISI PUZZLE */
 
         .puzzle-1 {
             grid-column: 2;
@@ -81,19 +81,17 @@
         /* KOTAK PUZZLE */
 
         .puzzle {
-            padding: 20px;
+            padding: 25px 15px;
 
             border: 1px solid #39ff14;
 
-            min-height: 230px;
+            min-height: 180px;
 
             display: flex;
             flex-direction: column;
 
             justify-content: center;
             align-items: center;
-
-            transition: 0.2s;
         }
 
         .puzzle.locked {
@@ -102,81 +100,8 @@
         }
 
         .number {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-
-        /* BANGUN DATAR */
-
-        .shape {
-            margin-bottom: 18px;
-        }
-
-        .square {
-            width: 70px;
-            height: 70px;
-
-            border: 3px solid #39ff14;
-        }
-
-        .circle {
-            width: 70px;
-            height: 70px;
-
-            border: 3px solid #39ff14;
-
-            border-radius: 50%;
-        }
-
-        .triangle {
-            width: 0;
-            height: 0;
-
-            border-left: 40px solid transparent;
-            border-right: 40px solid transparent;
-            border-bottom: 70px solid #39ff14;
-
-            position: relative;
-        }
-
-        .triangle::after {
-            content: "";
-
-            position: absolute;
-
-            left: -34px;
-            top: 6px;
-
-            width: 0;
-            height: 0;
-
-            border-left: 34px solid transparent;
-            border-right: 34px solid transparent;
-            border-bottom: 60px solid #000;
-        }
-
-        .trapezoid {
-            width: 90px;
-            height: 60px;
-
-            border-bottom: 3px solid #39ff14;
-            border-left: 3px solid #39ff14;
-            border-right: 3px solid #39ff14;
-
-            position: relative;
-        }
-
-        .trapezoid::before {
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-            left: 15px;
-
-            width: 54px;
-
-            border-top: 3px solid #39ff14;
+            font-size: 25px;
+            margin-bottom: 25px;
         }
 
         /* INPUT */
@@ -185,7 +110,7 @@
             width: 90%;
             max-width: 220px;
 
-            padding: 10px;
+            padding: 11px;
 
             background: #000;
             color: #39ff14;
@@ -193,6 +118,8 @@
             border: 1px solid #39ff14;
 
             text-align: center;
+
+            font-size: 15px;
 
             outline: none;
         }
@@ -204,7 +131,7 @@
         /* BUTTON */
 
         button {
-            margin-top: 10px;
+            margin-top: 12px;
 
             padding: 10px 22px;
 
@@ -290,12 +217,10 @@
                 1
             </div>
 
-            <div class="shape square"></div>
-
             <input
                 type="text"
                 id="answer1"
-                placeholder="Nama bangun"
+                placeholder="Masukkan jawaban"
                 autocomplete="off"
             >
 
@@ -319,12 +244,10 @@
                 2
             </div>
 
-            <div class="shape circle"></div>
-
             <input
                 type="text"
                 id="answer2"
-                placeholder="Nama bangun"
+                placeholder="Masukkan jawaban"
                 autocomplete="off"
                 disabled
             >
@@ -351,12 +274,10 @@
                 3
             </div>
 
-            <div class="shape triangle"></div>
-
             <input
                 type="text"
                 id="answer3"
-                placeholder="Nama bangun"
+                placeholder="Masukkan jawaban"
                 autocomplete="off"
                 disabled
             >
@@ -383,12 +304,10 @@
                 4
             </div>
 
-            <div class="shape trapezoid"></div>
-
             <input
                 type="text"
                 id="answer4"
-                placeholder="Nama bangun"
+                placeholder="Masukkan jawaban"
                 autocomplete="off"
                 disabled
             >
@@ -430,6 +349,8 @@
 
 <script>
 
+    /* JAWABAN */
+
     const answers = {
 
         1: "KOTAK",
@@ -439,6 +360,8 @@
 
     };
 
+
+    /* CEK JAWABAN */
 
     function checkAnswer(number) {
 
@@ -464,7 +387,7 @@
                 "BENAR ✓";
 
 
-            /* BUKA PUZZLE BERIKUTNYA */
+            /* BUKA NOMOR BERIKUTNYA */
 
             if (number < 4) {
 
@@ -499,7 +422,7 @@
             }
 
 
-            /* NOMOR 4 SELESAI */
+            /* SEMUA SELESAI */
 
             else {
 
@@ -509,6 +432,7 @@
                     );
 
                 nextButton.disabled = false;
+
 
                 localStorage.setItem(
                     "searchBangunSolved",
