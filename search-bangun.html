@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SEARCH - Bangun Datar</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background: #000;
+            color: #39ff14;
+
+            font-family: Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 850px;
+
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        /* AREA PUZZLE */
+
+        .puzzle-area {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto auto;
+
+            gap: 30px;
+
+            align-items: center;
+        }
+
+        /* POSISI */
+
+        .puzzle-1 {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .puzzle-2 {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .puzzle-4 {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .puzzle-3 {
+            grid-column: 2;
+            grid-row: 3;
+        }
+
+        /* KOTAK PUZZLE */
+
+        .puzzle {
+            padding: 20px;
+
+            border: 1px solid #39ff14;
+
+            min-height: 230px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            transition: 0.2s;
+        }
+
+        .puzzle.locked {
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .number {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        /* BANGUN DATAR */
+
+        .shape {
+            margin-bottom: 18px;
+        }
+
+        .square {
+            width: 70px;
+            height: 70px;
+
+            border: 3px solid #39ff14;
+        }
+
+        .circle {
+            width: 70px;
+            height: 70px;
+
+            border: 3px solid #39ff14;
+
+            border-radius: 50%;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 70px solid #39ff14;
+
+            position: relative;
+        }
+
+        .triangle::after {
+            content: "";
+
+            position: absolute;
+
+            left: -34px;
+            top: 6px;
+
+            width: 0;
+            height: 0;
+
+            border-left: 34px solid transparent;
+            border-right: 34px solid transparent;
+            border-bottom: 60px solid #000;
+        }
+
+        .trapezoid {
+            width: 90px;
+            height: 60px;
+
+            border-bottom: 3px solid #39ff14;
+            border-left: 3px solid #39ff14;
+            border-right: 3px solid #39ff14;
+
+            position: relative;
+        }
+
+        .trapezoid::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 15px;
+
+            width: 54px;
+
+            border-top: 3px solid #39ff14;
+        }
+
+        /* INPUT */
+
+        input {
+            width: 90%;
+            max-width: 220px;
+
+            padding: 10px;
+
+            background: #000;
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            text-align: center;
+
+            outline: none;
+        }
+
+        input:focus {
+            box-shadow: 0 0 8px #39ff14;
+        }
+
+        /* BUTTON */
+
+        button {
+            margin-top: 10px;
+
+            padding: 10px 22px;
+
+            background: #071f0b;
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            cursor: pointer;
+
+            letter-spacing: 1px;
+        }
+
+        button:hover:not(:disabled) {
+            background: #39ff14;
+            color: #000;
+        }
+
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .message {
+            min-height: 20px;
+
+            margin-top: 8px;
+
+            font-size: 14px;
+        }
+
+        /* LANJUT */
+
+        .next-area {
+            margin-top: 35px;
+        }
+
+        #nextButton {
+            padding: 13px 35px;
+            font-size: 15px;
+        }
+
+        @media (max-width: 650px) {
+
+            .puzzle-area {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .puzzle-1,
+            .puzzle-2,
+            .puzzle-3,
+            .puzzle-4 {
+                grid-column: 1;
+                grid-row: auto;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>SEARCH</h1>
+
+    <div class="subtitle">
+        SEBUAH BANGUN DATAR
+    </div>
+
+
+    <div class="puzzle-area">
+
+
+        <!-- NOMOR 1 -->
+
+        <div class="puzzle puzzle-1" id="puzzle1">
+
+            <div class="number">
+                1
+            </div>
+
+            <div class="shape square"></div>
+
+            <input
+                type="text"
+                id="answer1"
+                placeholder="Nama bangun"
+                autocomplete="off"
+            >
+
+            <button onclick="checkAnswer(1)">
+                CEK
+            </button>
+
+            <div
+                class="message"
+                id="message1">
+            </div>
+
+        </div>
+
+
+        <!-- NOMOR 2 -->
+
+        <div class="puzzle puzzle-2 locked" id="puzzle2">
+
+            <div class="number">
+                2
+            </div>
+
+            <div class="shape circle"></div>
+
+            <input
+                type="text"
+                id="answer2"
+                placeholder="Nama bangun"
+                autocomplete="off"
+                disabled
+            >
+
+            <button
+                onclick="checkAnswer(2)"
+                disabled>
+                CEK
+            </button>
+
+            <div
+                class="message"
+                id="message2">
+            </div>
+
+        </div>
+
+
+        <!-- NOMOR 3 -->
+
+        <div class="puzzle puzzle-3 locked" id="puzzle3">
+
+            <div class="number">
+                3
+            </div>
+
+            <div class="shape triangle"></div>
+
+            <input
+                type="text"
+                id="answer3"
+                placeholder="Nama bangun"
+                autocomplete="off"
+                disabled
+            >
+
+            <button
+                onclick="checkAnswer(3)"
+                disabled>
+                CEK
+            </button>
+
+            <div
+                class="message"
+                id="message3">
+            </div>
+
+        </div>
+
+
+        <!-- NOMOR 4 -->
+
+        <div class="puzzle puzzle-4 locked" id="puzzle4">
+
+            <div class="number">
+                4
+            </div>
+
+            <div class="shape trapezoid"></div>
+
+            <input
+                type="text"
+                id="answer4"
+                placeholder="Nama bangun"
+                autocomplete="off"
+                disabled
+            >
+
+            <button
+                onclick="checkAnswer(4)"
+                disabled>
+                CEK
+            </button>
+
+            <div
+                class="message"
+                id="message4">
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- TOMBOL LANJUT -->
+
+    <div class="next-area">
+
+        <button
+            id="nextButton"
+            disabled>
+
+            LANJUT
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+    const answers = {
+
+        1: "KOTAK",
+        2: "BULAT",
+        3: "SEGITIGA",
+        4: "TRAPESIUM"
+
+    };
+
+
+    function checkAnswer(number) {
+
+        const input =
+            document.getElementById(
+                "answer" + number
+            );
+
+        const message =
+            document.getElementById(
+                "message" + number
+            );
+
+        const answer =
+            input.value
+            .trim()
+            .toUpperCase();
+
+
+        if (answer === answers[number]) {
+
+            message.innerText =
+                "BENAR ✓";
+
+
+            /* BUKA PUZZLE BERIKUTNYA */
+
+            if (number < 4) {
+
+                const nextNumber =
+                    number + 1;
+
+                const nextPuzzle =
+                    document.getElementById(
+                        "puzzle" + nextNumber
+                    );
+
+                nextPuzzle.classList.remove(
+                    "locked"
+                );
+
+
+                const nextInput =
+                    document.getElementById(
+                        "answer" + nextNumber
+                    );
+
+                nextInput.disabled = false;
+
+
+                const nextButton =
+                    nextPuzzle.querySelector(
+                        "button"
+                    );
+
+                nextButton.disabled = false;
+
+            }
+
+
+            /* NOMOR 4 SELESAI */
+
+            else {
+
+                const nextButton =
+                    document.getElementById(
+                        "nextButton"
+                    );
+
+                nextButton.disabled = false;
+
+                localStorage.setItem(
+                    "searchBangunSolved",
+                    "true"
+                );
+
+            }
+
+        }
+
+        else {
+
+            message.innerText =
+                "Jawaban belum tepat.";
+
+        }
+
+    }
+
+
+    /* TOMBOL LANJUT */
+
+    document
+    .getElementById("nextButton")
+    .addEventListener(
+        "click",
+        function() {
+
+            if (!this.disabled) {
+
+                window.location.href =
+                    "search-woops.html";
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
