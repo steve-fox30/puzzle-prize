@@ -24,8 +24,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
-            overflow: hidden;
         }
 
         .container {
@@ -51,52 +49,7 @@
                 0 0 15px #39ff14;
         }
 
-        /* KALIMAT */
-
-        .quote {
-            font-size: 18px;
-
-            line-height: 1.7;
-
-            margin-bottom: 55px;
-
-            opacity: 0.85;
-        }
-
-        /* TOMBOL */
-
-        .start-button {
-            padding: 14px 40px;
-
-            background: transparent;
-
-            color: #39ff14;
-
-            border: 1px solid #39ff14;
-
-            font-size: 15px;
-
-            letter-spacing: 3px;
-
-            cursor: pointer;
-
-            transition:
-                background 0.3s,
-                color 0.3s,
-                box-shadow 0.3s;
-        }
-
-        .start-button:hover {
-            background: #39ff14;
-
-            color: #000;
-
-            box-shadow:
-                0 0 10px #39ff14,
-                0 0 25px #39ff14;
-        }
-
-        /* GARIS KECIL */
+        /* GARIS */
 
         .line {
             width: 80px;
@@ -109,12 +62,116 @@
             opacity: 0.6;
         }
 
+        /* KALIMAT */
+
+        .quote {
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            margin-bottom: 40px;
+
+            opacity: 0.85;
+        }
+
+        /* TOMBOL */
+
+        button {
+            padding: 13px 35px;
+
+            background: transparent;
+
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            font-size: 15px;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover:not(:disabled) {
+            background: #39ff14;
+
+            color: #000;
+
+            box-shadow:
+                0 0 10px #39ff14,
+                0 0 25px #39ff14;
+        }
+
+        button:disabled {
+            opacity: 0.3;
+
+            cursor: not-allowed;
+
+            box-shadow: none;
+        }
+
+        /* BAGIAN JAWABAN */
+
+        .answer-section {
+            margin-top: 45px;
+
+            padding-top: 30px;
+
+            border-top: 1px solid #174d17;
+        }
+
+        .question {
+            font-size: 17px;
+
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 80%;
+            max-width: 350px;
+
+            padding: 13px;
+
+            background: #000;
+
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            text-align: center;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+        input:focus {
+            box-shadow: 0 0 8px #39ff14;
+        }
+
+        #message {
+            min-height: 25px;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+        }
+
+        /* LANJUT */
+
+        .next-section {
+            margin-top: 30px;
+        }
+
         /* HP */
 
         @media (max-width: 600px) {
 
             h1 {
                 font-size: 38px;
+
                 letter-spacing: 6px;
             }
 
@@ -122,8 +179,8 @@
                 font-size: 16px;
             }
 
-            .start-button {
-                padding: 13px 32px;
+            input {
+                width: 90%;
             }
 
         }
@@ -134,38 +191,168 @@
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <div class="line"></div>
+    <div class="line"></div>
 
-        <h1>DISCOVER</h1>
 
-        <div class="quote">
-            "Tidak semua yang dicari<br>
-            ingin ditemukan."
-        </div>
+    <h1>
+        DISCOVER
+    </h1>
 
-        <button
-            class="start-button"
-            onclick="startDiscover()">
 
-            MULAI
-
-        </button>
-
+    <div class="quote">
+        "Tidak semua yang dicari<br>
+        ingin ditemukan."
     </div>
 
 
-    <script>
+    <!-- TOMBOL KE CERITA -->
 
-        function startDiscover() {
+    <button
+        onclick="bacaCerita()">
 
-            window.location.href =
-                "discover-cerita.html";
+        BACA CERITA
+
+    </button>
+
+
+    <!-- BAGIAN JAWABAN -->
+
+    <div class="answer-section">
+
+        <div class="question">
+            Siapakah "dia"?
+        </div>
+
+
+        <input
+            type="text"
+            id="answer"
+            placeholder="Masukkan jawaban"
+            autocomplete="off"
+        >
+
+
+        <br>
+
+
+        <button
+            onclick="checkAnswer()">
+
+            CEK
+
+        </button>
+
+
+        <div id="message"></div>
+
+
+        <!-- TOMBOL LANJUT -->
+
+        <div class="next-section">
+
+            <button
+                id="nextButton"
+                disabled>
+
+                LANJUT
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /* BUKA CERITA */
+
+    function bacaCerita() {
+
+        window.location.href =
+            "discover-cerita.html";
+
+    }
+
+
+    /* CEK JAWABAN */
+
+    function checkAnswer() {
+
+        const answer =
+            document
+            .getElementById("answer")
+            .value
+            .trim()
+            .toUpperCase();
+
+
+        const message =
+            document
+            .getElementById("message");
+
+
+        const nextButton =
+            document
+            .getElementById("nextButton");
+
+
+        if (answer === "MERCUSUAR") {
+
+            message.innerText =
+                "BENAR ✓";
+
+
+            nextButton.disabled =
+                false;
+
+
+            localStorage.setItem(
+                "discoverSolved",
+                "true"
+            );
 
         }
 
-    </script>
+        else {
+
+            message.innerText =
+                "Jawaban belum tepat.";
+
+        }
+
+    }
+
+
+    /* TOMBOL LANJUT */
+
+    document
+    .getElementById("nextButton")
+    .addEventListener(
+        "click",
+        function() {
+
+            if (!this.disabled) {
+
+                /*
+                   NANTI GANTI
+                   DENGAN HALAMAN
+                   SELANJUTNYA
+                */
+
+                window.location.href =
+                    "discover-woops.html";
+
+            }
+
+        }
+    );
+
+</script>
 
 </body>
 </html>
