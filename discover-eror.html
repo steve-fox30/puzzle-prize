@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DISCOVER 02</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            color: #39ff14;
+            font-family: "Courier New", monospace;
+            overflow: hidden;
+        }
+
+        .screen {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .noise {
+            position: absolute;
+            inset: 0;
+            padding: 25px;
+
+            font-size: 15px;
+            line-height: 2.1;
+            letter-spacing: 2px;
+            word-spacing: 10px;
+
+            opacity: 0.85;
+
+            user-select: none;
+
+            animation: flicker 4s infinite;
+        }
+
+        .title {
+            position: absolute;
+            top: 27%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            font-size: 25px;
+            letter-spacing: 4px;
+
+            z-index: 2;
+
+            animation: glitch 2.5s infinite;
+        }
+
+        .error {
+            position: absolute;
+            top: 43%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            text-align: center;
+
+            font-size: 18px;
+            letter-spacing: 3px;
+
+            z-index: 2;
+        }
+
+        .x {
+            color: #39ff14;
+            cursor: pointer;
+            font: inherit;
+            text-decoration: none;
+        }
+
+        .x:hover {
+            text-shadow: 0 0 8px #39ff14;
+        }
+
+        .message {
+            position: absolute;
+
+            bottom: 35px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            font-size: 14px;
+
+            opacity: 0;
+
+            transition: opacity 0.2s;
+
+            z-index: 10;
+
+            white-space: nowrap;
+        }
+
+        .message.show {
+            opacity: 1;
+        }
+
+        @keyframes glitch {
+
+            0%, 90%, 100% {
+                transform: translate(-50%, -50%);
+            }
+
+            92% {
+                transform: translate(calc(-50% + 2px), -50%);
+            }
+
+            94% {
+                transform: translate(calc(-50% - 2px), -50%);
+            }
+
+        }
+
+        @keyframes flicker {
+
+            0%, 96%, 100% {
+                opacity: 0.85;
+            }
+
+            97% {
+                opacity: 0.55;
+            }
+
+            98% {
+                opacity: 0.9;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .noise {
+                padding: 15px;
+                font-size: 12px;
+                line-height: 2;
+                word-spacing: 5px;
+            }
+
+            .title {
+                font-size: 19px;
+            }
+
+            .error {
+                font-size: 14px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="screen">
+
+    <div class="noise">
+
+        ERR0R_4A9&nbsp;&nbsp;010010&nbsp;&nbsp;QJ7&nbsp;&nbsp;10101<br>
+
+        7A91&nbsp;&nbsp;00110&nbsp;&nbsp;B4F&nbsp;&nbsp;11001&nbsp;&nbsp;K8Z<br>
+
+        01011&nbsp;&nbsp;F7A&nbsp;&nbsp;10010&nbsp;&nbsp;C91&nbsp;&nbsp;01101<br>
+
+        M7A&nbsp;&nbsp;10011&nbsp;&nbsp;R4Q&nbsp;&nbsp;00101&nbsp;&nbsp;ZK2<br>
+
+        <br>
+
+        P4GE C0RRUPT3D
+
+        <br><br>
+
+        0101
+
+        <!-- X PALSU -->
+        <span class="x" onclick="wrongX()">X</span>
+
+        &nbsp;&nbsp;
+
+        A7F9&nbsp;&nbsp;11001&nbsp;&nbsp;ZK2&nbsp;&nbsp;00101
+
+        <br>
+
+        C91&nbsp;&nbsp;01101&nbsp;&nbsp;M7A&nbsp;&nbsp;10011&nbsp;&nbsp;R4Q
+
+        <br><br>
+
+        SYST3M F4IL3D
+
+        <br><br>
+
+        7F2&nbsp;&nbsp;11001&nbsp;&nbsp;B8C&nbsp;&nbsp;00110&nbsp;&nbsp;J4K
+
+        <br>
+
+        11010&nbsp;&nbsp;Q7A&nbsp;&nbsp;10101&nbsp;&nbsp;M3A&nbsp;&nbsp;K8R
+
+        <br><br>
+
+        D4T4 C0ULD N0T B3 L04D3D
+
+        <br><br>
+
+        11010&nbsp;&nbsp;Z9A&nbsp;&nbsp;00101&nbsp;&nbsp;A7F&nbsp;&nbsp;10111
+
+        <br>
+
+        K3M&nbsp;&nbsp;01001&nbsp;&nbsp;Q8R&nbsp;&nbsp;11010&nbsp;&nbsp;C7A
+
+        <br>
+
+        00110&nbsp;&nbsp;B4F&nbsp;&nbsp;ZK2&nbsp;&nbsp;01010&nbsp;&nbsp;R91
+
+        <br>
+
+        A7Q&nbsp;&nbsp;11001&nbsp;&nbsp;M3C&nbsp;&nbsp;00101&nbsp;&nbsp;F8R
+
+        <br>
+
+        01011&nbsp;&nbsp;K7A&nbsp;&nbsp;10010&nbsp;&nbsp;C3M&nbsp;&nbsp;J91
+
+        <br>
+
+        11001&nbsp;&nbsp;Q4F&nbsp;&nbsp;00110&nbsp;&nbsp;Z8K&nbsp;&nbsp;R7A
+
+        <br>
+
+        01010&nbsp;&nbsp;M8C&nbsp;&nbsp;11011&nbsp;&nbsp;B7Q&nbsp;&nbsp;A91
+
+        <br>
+
+        00101&nbsp;&nbsp;F4K&nbsp;&nbsp;10011&nbsp;&nbsp;C8R&nbsp;&nbsp;J7M
+
+        <br>
+
+        11010&nbsp;&nbsp;Q3A&nbsp;&nbsp;00110&nbsp;&nbsp;K8F&nbsp;&nbsp;R91
+
+        <br>
+
+        01001&nbsp;&nbsp;M7C&nbsp;&nbsp;10110&nbsp;&nbsp;B4Q&nbsp;&nbsp;Z8A
+
+        <br>
+
+        11001&nbsp;&nbsp;F7M&nbsp;&nbsp;00101&nbsp;&nbsp;C4R&nbsp;&nbsp;J9K
+
+        <br>
+
+        01010&nbsp;&nbsp;Q8A&nbsp;&nbsp;10011&nbsp;&nbsp;M3F&nbsp;&nbsp;B7C
+
+        <br>
+
+        00110&nbsp;&nbsp;R4K&nbsp;&nbsp;11010&nbsp;&nbsp;Z7M&nbsp;&nbsp;A8Q
+
+        <br>
+
+        01001&nbsp;&nbsp;C7F&nbsp;&nbsp;10101&nbsp;&nbsp;K3R&nbsp;&nbsp;M8A
+
+        <br>
+
+        11011&nbsp;&nbsp;Q4M&nbsp;&nbsp;00110&nbsp;&nbsp;F8C&nbsp;&nbsp;Z7K
+
+        <br>
+
+        01010&nbsp;&nbsp;A7R&nbsp;&nbsp;10011&nbsp;&nbsp;M4Q&nbsp;&nbsp;C8F
+
+        <br>
+
+        00101&nbsp;&nbsp;K7M&nbsp;&nbsp;11010&nbsp;&nbsp;B3A&nbsp;&nbsp;R8C
+
+        <br>
+
+        01011&nbsp;&nbsp;Q9F&nbsp;&nbsp;10110&nbsp;&nbsp;M7K&nbsp;&nbsp;A4R
+
+        <br>
+
+        11001&nbsp;&nbsp;C3Q&nbsp;&nbsp;00110&nbsp;&nbsp;Z8M&nbsp;&nbsp;F7A
+
+        <br>
+
+        01010&nbsp;&nbsp;R4C&nbsp;&nbsp;10011&nbsp;&nbsp;K8Q&nbsp;&nbsp;M3F
+
+        <br>
+
+        00101&nbsp;&nbsp;A7M&nbsp;&nbsp;11010&nbsp;&nbsp;B4R&nbsp;&nbsp;Q8K
+
+        <br>
+
+        01001&nbsp;&nbsp;F7C&nbsp;&nbsp;10101&nbsp;&nbsp;Z3M&nbsp;&nbsp;K8A
+
+        <br>
+
+        11011&nbsp;&nbsp;Q4R&nbsp;&nbsp;00110&nbsp;&nbsp;M7F&nbsp;&nbsp;C8K
+
+        <br>
+
+        01010&nbsp;&nbsp;A3Q&nbsp;&nbsp;10011&nbsp;&nbsp;R8M&nbsp;&nbsp;F7K
+
+        <br>
+
+        00101&nbsp;&nbsp;K4C&nbsp;&nbsp;11010&nbsp;&nbsp;B7R&nbsp;&nbsp;Q8A
+
+        <br>
+
+        01011&nbsp;&nbsp;M9F&nbsp;&nbsp;10110&nbsp;&nbsp;C7K&nbsp;&nbsp;A4Q
+
+        <br>
+
+        11001&nbsp;&nbsp;R3M&nbsp;&nbsp;00110&nbsp;&nbsp;F8A&nbsp;&nbsp;Z7C
+
+        <br>
+
+        01010&nbsp;&nbsp;Q7F&nbsp;&nbsp;10101&nbsp;&nbsp;K3A&nbsp;&nbsp;M8C
+
+        <br>
+
+        00110&nbsp;&nbsp;B4R&nbsp;&nbsp;11010&nbsp;&nbsp;Z7Q&nbsp;&nbsp;A8M
+
+        <br>
+
+        01010&nbsp;&nbsp;Q8A&nbsp;&nbsp;10011&nbsp;&nbsp;M3F&nbsp;&nbsp;
+
+        <!-- X BENAR -->
+        <span class="x" onclick="correctX()">X</span>
+
+        &nbsp;&nbsp;C7K
+
+        <br>
+
+        11001&nbsp;&nbsp;F4M&nbsp;&nbsp;00110&nbsp;&nbsp;Q8R&nbsp;&nbsp;A7C
+
+        <br>
+
+        01011&nbsp;&nbsp;K3A&nbsp;&nbsp;10010&nbsp;&nbsp;M8F&nbsp;&nbsp;R7Q
+
+    </div>
+
+
+    <div class="title">
+        DISCOVER_02
+    </div>
+
+
+    <div class="error">
+
+        P4GE C0RRUPT3D
+
+        <br>
+
+        <small>
+            D4T4 C0ULD N0T B3 L04D3D
+        </small>
+
+    </div>
+
+
+    <div
+        class="message"
+        id="message"
+    >
+        THIS ISN'T IT.
+    </div>
+
+</div>
+
+
+<script>
+
+    function wrongX() {
+
+        const message =
+            document.getElementById("message");
+
+        message.classList.add("show");
+
+        setTimeout(function () {
+
+            message.classList.remove("show");
+
+        }, 1800);
+
+    }
+
+
+    function correctX() {
+
+        window.location.href =
+            "discover-woops.html";
+
+    }
+
+</script>
+
+</body>
+</html>
