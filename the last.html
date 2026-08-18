@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SANDI TERAKHIR - V FOX</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background: #000;
+            color: #39ff14;
+
+            font-family: "Courier New", monospace;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+
+            padding: 40px 20px;
+        }
+
+        /* JUDUL */
+
+        h1 {
+            margin: 0 0 15px;
+
+            font-size: 36px;
+
+            letter-spacing: 7px;
+
+            text-shadow:
+                0 0 5px #39ff14,
+                0 0 15px #39ff14;
+        }
+
+        .line {
+            margin-bottom: 45px;
+
+            font-size: 13px;
+
+            opacity: 0.5;
+
+            letter-spacing: 5px;
+        }
+
+        /* CLUE */
+
+        .clue {
+            font-size: 17px;
+
+            line-height: 2;
+
+            margin-bottom: 40px;
+        }
+
+        /* INPUT */
+
+        input {
+            width: 100%;
+            max-width: 350px;
+
+            padding: 14px;
+
+            background: #050505;
+
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            outline: none;
+
+            font-family: "Courier New", monospace;
+
+            font-size: 16px;
+
+            text-align: center;
+        }
+
+        input::placeholder {
+            color: #39ff14;
+            opacity: 0.4;
+        }
+
+        input:focus {
+            box-shadow:
+                0 0 8px #39ff14,
+                0 0 20px rgba(57, 255, 20, 0.25);
+        }
+
+        /* BUTTON */
+
+        .button {
+            display: block;
+
+            margin: 18px auto 0;
+
+            padding: 12px 35px;
+
+            background: transparent;
+
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            font-family: "Courier New", monospace;
+
+            font-size: 15px;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .button:hover {
+            background: #39ff14;
+
+            color: #000;
+
+            box-shadow:
+                0 0 10px #39ff14,
+                0 0 25px #39ff14;
+        }
+
+        /* PESAN SALAH */
+
+        #message {
+            min-height: 22px;
+
+            margin-top: 25px;
+
+            font-size: 14px;
+
+            opacity: 0.9;
+        }
+
+        /* TOMBOL KEMBALI */
+
+        .back {
+            margin-top: 35px;
+
+            font-size: 13px;
+
+            opacity: 0.7;
+        }
+
+        .back:hover {
+            opacity: 1;
+        }
+
+        /* TEKS BAWAH */
+
+        .bottom-text {
+            margin-top: 40px;
+
+            font-size: 12px;
+
+            line-height: 1.8;
+
+            opacity: 0.4;
+        }
+
+        /* HP */
+
+        @media (max-width: 600px) {
+
+            h1 {
+                font-size: 27px;
+
+                letter-spacing: 5px;
+            }
+
+            .clue {
+                font-size: 14px;
+
+                line-height: 1.9;
+            }
+
+            input {
+                max-width: 300px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>
+            SANDI TERAKHIR
+        </h1>
+
+        <div class="line">
+            ───── V FOX ─────
+        </div>
+
+
+        <!-- CLUE -->
+
+        <div class="clue">
+
+            Wow, kau bisa sampai sini juga ya,<br>
+            bisa melewati banyak ocekan.<br><br>
+
+            Nah, untuk yang terakhir,<br>
+            sandinya selalu mengejek kita<br>
+            saat mengira sudah sampai akhir,<br>
+            entah dia hidup atau bukan makhluk hidup.
+
+        </div>
+
+
+        <!-- INPUT SANDI -->
+
+        <input
+            type="text"
+            id="password"
+            placeholder="MASUKKAN SANDI"
+            autocomplete="off"
+        >
+
+
+        <!-- LANJUT -->
+
+        <button
+            class="button"
+            onclick="checkPassword()"
+        >
+            LANJUT
+        </button>
+
+
+        <!-- PESAN -->
+
+        <div id="message"></div>
+
+
+        <!-- KEMBALI -->
+
+        <button
+            class="button back"
+            onclick="goBack()"
+        >
+            KEMBALI
+        </button>
+
+
+        <div class="bottom-text">
+            Kau bisa mengulang kembali<br>
+            untuk mencari jawabannya.
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function checkPassword() {
+
+            const password =
+                document
+                .getElementById("password")
+                .value
+                .trim()
+                .toUpperCase();
+
+            const message =
+                document.getElementById("message");
+
+
+            // SANDI YANG BENAR
+
+            if (password === "WOOPS") {
+
+                window.location.href = "prize.html";
+
+            }
+
+            // SANDI SALAH
+
+            else {
+
+                message.innerText =
+                    "Sandi belum tepat.";
+
+            }
+
+        }
+
+
+        // KEMBALI KE 4 TOMBOL
+
+        function goBack() {
+
+            window.location.href = "puzzlelast.html";
+
+        }
+
+    </script>
+
+</body>
+</html>
