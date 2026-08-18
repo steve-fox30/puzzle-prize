@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>END - V FOX</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background: #000;
+            color: #39ff14;
+
+            font-family: "Courier New", monospace;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+        }
+
+        h1 {
+            font-size: 38px;
+            letter-spacing: 8px;
+            margin-bottom: 50px;
+        }
+
+        .clue {
+            font-size: 17px;
+            line-height: 2;
+            margin-bottom: 35px;
+        }
+
+        input {
+            width: 100%;
+            max-width: 330px;
+
+            padding: 13px;
+
+            background: transparent;
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            font-family: "Courier New", monospace;
+            font-size: 16px;
+
+            text-align: center;
+
+            outline: none;
+        }
+
+        input::placeholder {
+            color: #39ff14;
+            opacity: 0.5;
+        }
+
+        button {
+            margin-top: 20px;
+
+            padding: 12px 30px;
+
+            background: transparent;
+            color: #39ff14;
+
+            border: 1px solid #39ff14;
+
+            font-family: "Courier New", monospace;
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #39ff14;
+            color: #000;
+        }
+
+        #message {
+            margin-top: 25px;
+
+            min-height: 24px;
+
+            font-size: 15px;
+        }
+
+        @media (max-width: 600px) {
+
+            h1 {
+                font-size: 28px;
+                letter-spacing: 5px;
+            }
+
+            .clue {
+                font-size: 15px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>END</h1>
+
+        <div class="clue">
+
+            "Kau mungkin pernah mendengar namanya."<br>
+
+            "Katanya, dia punya kemiripan denganku."<br>
+
+            "Cari tahu siapa dia."<br>
+
+            "Lalu cari tanggal lahirnya."
+
+        </div>
+
+        <input
+            type="text"
+            id="answer"
+            placeholder="DD/MM/YYYY"
+            autocomplete="off"
+        >
+
+        <br>
+
+        <button onclick="checkAnswer()">
+            LANJUT
+        </button>
+
+        <div id="message"></div>
+
+    </div>
+
+
+    <script>
+
+        function checkAnswer() {
+
+            const answer =
+                document.getElementById("answer").value.trim();
+
+            const message =
+                document.getElementById("message");
+
+
+            if (answer === "10/11/1974") {
+
+                window.location.href = "end-not.html";
+
+            } else {
+
+                message.innerText =
+                    "Lu kira Jefri Nichol, itu mah yang kedua.";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
