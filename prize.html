@@ -1,129 +1,771 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ACCESS GRANTED</title>
+<title>PUZZLE AING</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+* {
+    box-sizing: border-box;
+}
 
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050505;
+    color: white;
+}
+
+/* =========================
+   LOADING SCREEN
+========================= */
+
+#loadingScreen {
+    position: fixed;
+    inset: 0;
+    background: #050505;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    z-index: 9999;
+
+    transition: opacity 1s ease;
+}
+
+.loading-title {
+    font-size: 14px;
+    letter-spacing: 5px;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.status {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 4px;
+
+    margin-bottom: 30px;
+
+    animation: blink 1s infinite;
+}
+
+.progress-container {
+    width: min(400px, 75vw);
+    height: 5px;
+
+    background: #222;
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+
+    background: white;
+
+    transition: width 0.2s linear;
+}
+
+.percent {
+    margin-top: 12px;
+
+    font-size: 12px;
+    color: #666;
+    letter-spacing: 2px;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* =========================
+   ACCESS GRANTED
+========================= */
+
+#granted {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background: #050505;
+
+    z-index: 9998;
+}
+
+.granted-text {
+    font-size: clamp(35px, 8vw, 70px);
+    font-weight: bold;
+
+    letter-spacing: 8px;
+
+    animation: grantedAppear 1s ease forwards;
+}
+
+.check {
+    font-size: 45px;
+    margin-top: 15px;
+
+    animation: checkAppear 0.7s ease 0.4s both;
+}
+
+@keyframes grantedAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes checkAppear {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================
+   FINAL PAGE
+========================= */
+
+#finalPage {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+
+    opacity: 0;
+
+    transition: opacity 1.5s ease;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #252525 0%,
+            #0c0c0c 45%,
+            #000 100%
+        );
+}
+
+.card {
+    width: min(700px, 95%);
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    background: rgba(15,15,15,0.9);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 0 50px rgba(255,255,255,0.06),
+        0 20px 70px rgba(0,0,0,0.8);
+
+    animation: cardAppear 1.2s ease;
+}
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================
+   SELAMAT
+========================= */
+
+h1 {
+    margin: 0;
+
+    font-size: clamp(42px, 9vw, 75px);
+
+    letter-spacing: 7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #888888,
+            #ffffff
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: titleGlow 2s infinite alternate;
+}
+
+@keyframes titleGlow {
+
+    from {
+        filter: drop-shadow(0 0 2px white);
+    }
+
+    to {
+        filter: drop-shadow(0 0 15px white);
+    }
+}
+
+/* =========================
+   FOX LOGO
+========================= */
+
+.fox {
+    position: relative;
+
+    width: 130px;
+    height: 115px;
+
+    margin: 30px auto;
+}
+
+.fox-head {
+    position: absolute;
+
+    width: 95px;
+    height: 80px;
+
+    left: 17px;
+    top: 25px;
+
+    background: white;
+
+    clip-path: polygon(
+        0% 0%,
+        24% 25%,
+        50% 10%,
+        76% 25%,
+        100% 0%,
+        90% 70%,
+        50% 100%,
+        10% 70%
+    );
+}
+
+.ear-left,
+.ear-right {
+    position: absolute;
+
+    width: 40px;
+    height: 45px;
+
+    top: 0;
+
+    background: white;
+
+    clip-path: polygon(
+        50% 0%,
+        100% 100%,
+        0% 100%
+    );
+}
+
+.ear-left {
+    left: 15px;
+}
+
+.ear-right {
+    right: 15px;
+}
+
+.eye {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    background: black;
+
+    border-radius: 50%;
+
+    top: 58px;
+
+    z-index: 2;
+}
+
+.eye.left {
+    left: 43px;
+}
+
+.eye.right {
+    right: 43px;
+}
+
+.nose {
+    position: absolute;
+
+    width: 12px;
+    height: 10px;
+
+    background: black;
+
+    border-radius: 50%;
+
+    left: 59px;
+    top: 73px;
+
+    z-index: 2;
+}
+
+/* =========================
+   PESAN
+========================= */
+
+.message {
+    max-width: 570px;
+
+    margin: auto;
+
+    color: #cfcfcf;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+.instruction {
+    margin-top: 28px;
+
+    color: #888;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.instruction b {
+    color: white;
+}
+
+/* =========================
+   KALIMAT
+========================= */
+
+.secret {
+    margin-top: 16px;
+
+    padding: 18px 20px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    background: rgba(255,255,255,0.04);
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    line-height: 1.5;
+
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,0.03);
+}
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti {
+    position: fixed;
+
+    top: -30px;
+
+    width: 8px;
+    height: 15px;
+
+    z-index: 20;
+
+    opacity: 0.9;
+
+    animation:
+        confettiFall linear infinite;
+}
+
+@keyframes confettiFall {
+
+    0% {
+        transform:
+            translateY(-30px)
+            rotate(0deg);
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    #finalPage {
+        padding: 15px;
+    }
+
+    .card {
+        padding: 35px 20px;
+    }
+
+    .message {
+        font-size: 14px;
+    }
+
+    .secret {
+        font-size: 15px;
+    }
+
+    .granted-text {
+        letter-spacing: 4px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- =========================
+     LOADING
+========================= -->
 
-<h1>ACCESS GRANTED</h1>
+<div id="loadingScreen">
 
-<hr>
+    <div class="loading-title">
+        PUZZLE AING
+    </div>
 
-<br>
+    <div class="status" id="status">
+        VERIFYING...
+    </div>
 
-<p id="status">
+    <div class="progress-container">
+        <div class="progress" id="progress"></div>
+    </div>
 
-Verifying...
-
-</p>
-
-<br>
-
-<div class="code" id="loading">
-
-█░░░░░░░░░ 10%
-
-</div>
-
-<div id="reward" style="display:none;">
-
-<br>
-
-<p>
-
-Selamat.
-
-</p>
-
-<br>
-
-<p>
-
-Kamu berhasil menyelesaikan
-seluruh puzzle.
-
-</p>
-
-<br>
-
-<p>
-
-Tidak banyak orang yang
-mampu sampai di titik ini.
-
-</p>
-
-<br>
-
-<h2>PASSWORD</h2>
-
-<div class="code">
-
-PASSWORD:FOX311
+    <div class="percent" id="percent">
+        0%
+    </div>
 
 </div>
 
-<br>
 
-<p>
+<!-- =========================
+     ACCESS GRANTED
+========================= -->
 
-Pake password tersebut
-jeng muka folder hadiah.
-bereken ss an halaman iye ka aing
-mun hayang folder na  
+<div id="granted">
 
-</p>
+    <div class="granted-text">
+        ACCESS GRANTED
+    </div>
 
-<br><br>
-
-<p style="font-size:14px;color:#555;">
-
-nuhun ges main bos.
-
-</p>
+    <div class="check">
+        ✓
+    </div>
 
 </div>
 
+
+<!-- =========================
+     FINAL PAGE
+========================= -->
+
+<div id="finalPage">
+
+    <div class="card">
+
+        <h1>SELAMAT!</h1>
+
+
+        <!-- FOX LOGO -->
+
+        <div class="fox">
+
+            <div class="ear-left"></div>
+            <div class="ear-right"></div>
+
+            <div class="fox-head"></div>
+
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+
+            <div class="nose"></div>
+
+        </div>
+
+
+        <!-- APRESIASI -->
+
+        <div class="message">
+
+            Kalian berhasil sampai di akhir perjalanan.
+
+            <br>
+
+            Tidak semua petunjuk mudah ditemukan,
+            tidak semua jawaban langsung terlihat,
+            tetapi kalian tetap berhasil melewati
+            semuanya sampai akhir.
+
+            <br><br>
+
+            Terima kasih sudah bermain,
+            berpikir, mencari, dan mengikuti
+            setiap teka-teki yang diberikan.
+
+            <br><br>
+
+            <b>Perjalanan kalian akhirnya selesai.aseli rapih iyemah</b>
+
+        </div>
+
+
+        <!-- INSTRUKSI -->
+
+        <div class="instruction">
+
+            Sekarang, sebagai tanda bahwa kalian
+            telah menyelesaikan semuanya...
+
+            <br><br>
+
+            <b>
+                Ucapkan kalimat ini kepada saya unutk mendapatkan hadiah nya
+            </b>
+
+        </div>
+
+
+        <!-- KALIMAT RAHASIA -->
+
+        <div class="secret">
+
+            "suatu hari bunga bunga akan bermekaran
+            lagi di barren lands"
+
+        </div>
+
+    </div>
+
 </div>
+
 
 <script>
 
-let bar=document.getElementById("loading");
-let status=document.getElementById("status");
-let reward=document.getElementById("reward");
+/* ==========================================
+   LOADING SYSTEM
+========================================== */
 
-setTimeout(()=>{
-bar.innerHTML="████░░░░░░ 40%";
-},800);
+const progress = document.getElementById("progress");
+const percent = document.getElementById("percent");
+const status = document.getElementById("status");
 
-setTimeout(()=>{
-bar.innerHTML="███████░░░ 75%";
-},1700);
+const loadingScreen =
+    document.getElementById("loadingScreen");
 
-setTimeout(()=>{
-bar.innerHTML="██████████ 100%";
-status.innerHTML="ACCESS GRANTED";
-},2600);
+const granted =
+    document.getElementById("granted");
 
-setTimeout(()=>{
-bar.style.display="none";
-reward.style.display="block";
-},3200);
+const finalPage =
+    document.getElementById("finalPage");
+
+
+let value = 0;
+
+
+/* STATUS YANG BERUBAH */
+
+const statuses = [
+    "VERIFYING...",
+    "CHECKING PUZZLES...",
+    "DECRYPTING...",
+    "FINALIZING...",
+    "ACCESSING..."
+];
+
+
+const interval = setInterval(() => {
+
+    value += Math.floor(Math.random() * 5) + 1;
+
+    if (value > 100) {
+        value = 100;
+    }
+
+    progress.style.width = value + "%";
+
+    percent.textContent = value + "%";
+
+
+    /* GANTI TEKS */
+
+    if (value < 25) {
+
+        status.textContent = statuses[0];
+
+    } else if (value < 50) {
+
+        status.textContent = statuses[1];
+
+    } else if (value < 70) {
+
+        status.textContent = statuses[2];
+
+    } else if (value < 90) {
+
+        status.textContent = statuses[3];
+
+    } else {
+
+        status.textContent = statuses[4];
+
+    }
+
+
+    /* SELESAI */
+
+    if (value >= 100) {
+
+        clearInterval(interval);
+
+        setTimeout(showGranted, 700);
+
+    }
+
+}, 120);
+
+
+/* ==========================================
+   ACCESS GRANTED
+========================================== */
+
+function showGranted() {
+
+    loadingScreen.style.opacity = "0";
+
+    setTimeout(() => {
+
+        loadingScreen.style.display = "none";
+
+        granted.style.display = "flex";
+
+    }, 1000);
+
+
+    /* setelah ACCESS GRANTED */
+
+    setTimeout(() => {
+
+        granted.style.opacity = "0";
+
+        granted.style.transition =
+            "opacity 1s ease";
+
+        setTimeout(() => {
+
+            granted.style.display = "none";
+
+            finalPage.style.opacity = "1";
+
+            createConfetti();
+
+        }, 1000);
+
+    }, 2800);
+
+}
+
+
+/* ==========================================
+   CONFETTI
+========================================== */
+
+function createConfetti() {
+
+    const amount = 120;
+
+    for (let i = 0; i < amount; i++) {
+
+        const piece =
+            document.createElement("div");
+
+        piece.classList.add("confetti");
+
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+
+        piece.style.width =
+            Math.random() * 7 + 5 + "px";
+
+
+        piece.style.height =
+            Math.random() * 12 + 8 + "px";
+
+
+        piece.style.animationDuration =
+            Math.random() * 4 + 3 + "s";
+
+
+        piece.style.animationDelay =
+            Math.random() * 4 + "s";
+
+
+        piece.style.background =
+            Math.random() > 0.5
+            ? "#ffffff"
+            : "#777777";
+
+
+        document.body.appendChild(piece);
+
+    }
+
+}
 
 </script>
 
 </body>
-
 </html>
